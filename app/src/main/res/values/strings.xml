@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Hello world</string>
+    <string name="app_name">Play with life cycle!</string>
+    <string name="finish_button">Finish</string>
 </resources>
