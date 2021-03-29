@@ -1,8 +1,10 @@
 package com.example.helloworld;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -37,25 +39,37 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+        super.onPause();
     }
 
     @Override
     protected void onStop() {
-        super.onStop();
         Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
+        super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+        super.onDestroy();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Toast.makeText(this, "onSaveInstanceState", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        Toast.makeText(this, "onRestoreInstanceState", Toast.LENGTH_SHORT).show();
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
