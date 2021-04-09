@@ -6,23 +6,28 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class MyPlacesList extends AppCompatActivity {
+    ArrayList<String> places;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_my_places_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -32,20 +37,26 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        places = new ArrayList<>();
+        places.add("Tvrdjava");
+        places.add("Trg Kralja Milana");
+        places.add("Cerovo");
+        places.add("Park Svetog Save");
+        places.add("CAIR");
+
+        ListView myPlacesList = (ListView)findViewById(R.id.my_places_list);
+        myPlacesList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, places));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_places_list, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         switch (id) {
@@ -55,16 +66,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.new_place_item:
                 Toast.makeText(this, "New Place!", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.my_places_list_item:
-                Intent l = new Intent(this, MyPlacesList.class);
-                startActivity(l);
-                break;
             case R.id.about_item:
                 Intent i = new Intent(this, AboutActivity.class);
                 startActivity(i);
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
