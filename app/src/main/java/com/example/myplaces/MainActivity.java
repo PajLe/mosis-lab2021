@@ -12,6 +12,7 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,9 +47,19 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.show_map_item:
+                Toast.makeText(this, "Show Map!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.new_place_item:
+                Toast.makeText(this, "New Place!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.my_places_list_item:
+                Toast.makeText(this, "My Places!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.about_item:
+                Toast.makeText(this, "About!", Toast.LENGTH_SHORT).show();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
