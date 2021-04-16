@@ -26,4 +26,6 @@
     <string name="editmyplace_cancel_label">Cancel</string>
     <string name="editmyplace_finished_label">Finish</string>
 
+    <string name="viewmyplace_finished_button">OK</string>
+
 </resources>

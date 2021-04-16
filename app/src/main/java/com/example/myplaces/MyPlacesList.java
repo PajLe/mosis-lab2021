@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.example.myplaces.data.MyPlace;
 import com.example.myplaces.data.MyPlacesData;
 import com.example.myplaces.ui.editmyplaceactivity.EditMyPlaceActivity;
+import com.example.myplaces.ui.viewmyplaceactivity.ViewMyPlaceActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,8 +45,8 @@ public class MyPlacesList extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(MyPlacesList.this, EditMyPlaceActivity.class);
+                startActivityForResult(i, NEW_PLACE_REQUEST);
             }
         });
 
@@ -53,8 +55,22 @@ public class MyPlacesList extends AppCompatActivity {
         myPlacesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MyPlace place = (MyPlace)parent.getAdapter().getItem(position);
-                Toast.makeText(getApplicationContext(), place + " selected", Toast.LENGTH_SHORT).show();
+                Bundle positionBundle = new Bundle();
+                positionBundle.putInt("position", position);
+                Intent intent = new Intent(MyPlacesList.this, ViewMyPlaceActivity.class);
+                intent.putExtras(positionBundle);
+                startActivity(intent);
+            }
+        });
+
+        myPlacesList.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                MyPlace place = MyPlacesData.getInstance().getPlace(info.position);
+                menu.setHeaderTitle(place.getName());
+                menu.add(0,1,1,"View place");
+                menu.add(0,2,2,"Edit place");
             }
         });
     }
@@ -75,6 +91,7 @@ public class MyPlacesList extends AppCompatActivity {
                 Toast.makeText(this, "Show Map!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.new_place_item:
+                //
                 i = new Intent(this, EditMyPlaceActivity.class);
                 startActivityForResult(i, NEW_PLACE_REQUEST);
                 break;
@@ -97,5 +114,25 @@ public class MyPlacesList extends AppCompatActivity {
             ListView myPlacesList = (ListView)findViewById(R.id.my_places_list);
             myPlacesList.setAdapter(new ArrayAdapter<MyPlace>(this, android.R.layout.simple_list_item_1, MyPlacesData.getInstance().getMyPlaces()));
         }
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Bundle positionBundle = new Bundle();
+        positionBundle.putInt("position", info.position);
+        Intent i = null;
+
+        if(item.getItemId() == 1) {
+            i = new Intent(this, ViewMyPlaceActivity.class);
+            i.putExtras(positionBundle);
+            startActivity(i);
+        } else if(item.getItemId() == 2) {
+            i = new Intent(this, EditMyPlaceActivity.class);
+            i.putExtras(positionBundle);
+            startActivityForResult(i, 1);
+        }
+
+        return super.onContextItemSelected(item);
     }
 }
