@@ -94,7 +94,8 @@ public class MyPlacesList extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK) {
-            Toast.makeText(this, "New Place added!", Toast.LENGTH_SHORT).show();
+            ListView myPlacesList = (ListView)findViewById(R.id.my_places_list);
+            myPlacesList.setAdapter(new ArrayAdapter<MyPlace>(this, android.R.layout.simple_list_item_1, MyPlacesData.getInstance().getMyPlaces()));
         }
     }
 }
