@@ -1,17 +1,11 @@
-package com.example.myplaces.ui.mainactivity;
+package com.example.myplaces;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.myplaces.AboutActivity;
-import com.example.myplaces.MyPlacesList;
-import com.example.myplaces.R;
-import com.example.myplaces.ui.editmyplaceactivity.EditMyPlaceActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -22,8 +16,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    static int NEW_PLACE_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,33 +48,23 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        Intent i;
         switch (id) {
             case R.id.show_map_item:
                 Toast.makeText(this, "Show Map!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.new_place_item:
-                i = new Intent(this, EditMyPlaceActivity.class);
-                startActivityForResult(i, NEW_PLACE_REQUEST);
+                Toast.makeText(this, "New Place!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_places_list_item:
-                i = new Intent(this, MyPlacesList.class);
-                startActivity(i);
+                Intent l = new Intent(this, MyPlacesList.class);
+                startActivity(l);
                 break;
             case R.id.about_item:
-                i = new Intent(this, AboutActivity.class);
+                Intent i = new Intent(this, AboutActivity.class);
                 startActivity(i);
                 break;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Activity.RESULT_OK) {
-            Toast.makeText(this, "New Place added!", Toast.LENGTH_SHORT).show();
-        }
     }
 }

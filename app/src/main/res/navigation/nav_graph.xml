@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.myplaces.ui.mainactivity.MainActivityFragment"
+        android:name="com.example.myplaces.FirstFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/main_activity_fragment_first">
+        tools:layout="@layout/fragment_first">
 
     </fragment>
 

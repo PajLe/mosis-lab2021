@@ -10,14 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPlaces">
         <activity
-            android:name=".ui.editmyplaceactivity.EditMyPlaceActivity"
-            ></activity>
-        <activity
             android:name=".MyPlacesList"
             android:label="@string/title_activity_my_places_list"
-            android:theme="@style/Theme.MyPlaces.NoActionBar"></activity>
+            android:theme="@style/Theme.MyPlaces.NoActionBar"
+            android:parentActivityName="MainActivity">
+        </activity>
         <activity
-            android:name=".ui.mainactivity.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyPlaces.NoActionBar">
             <intent-filter>
@@ -29,7 +28,8 @@
         <activity
             android:name=".AboutActivity"
             android:label="About"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+        </activity>
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mainactivity.MainActivityFragment">
+    tools:context=".FirstFragment">
 
     <TextView
         android:id="@+id/textview_first"
@@ -13,10 +13,9 @@
         android:text="@string/my_places"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintVertical_bias="0.182" />
 
     <ImageView
         android:id="@+id/elfak_image_view"
@@ -25,11 +24,11 @@
         android:contentDescription="@string/elfak_image"
         android:src="@drawable/elfak"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/app_logo_image_view"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503" />
+        app:layout_constraintTop_toTopOf="@+id/textview_first"
+        app:layout_constraintVertical_bias="0.164" />
 
     <ImageView
         android:id="@+id/app_logo_image_view"
@@ -39,9 +38,9 @@
         android:src="@drawable/pin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/elfak_image_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.504" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/elfak_image_view"
+        app:layout_constraintVertical_bias="0.372" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
