@@ -48,6 +48,7 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
         Button finishedButton = (Button) findViewById(R.id.editmyplace_finished_button);
         Button cancelButton = (Button) findViewById(R.id.editmyplace_cancel_button);
         EditText nameEditText = (EditText) findViewById(R.id.editmyplace_name_edit);
+        EditText descEditText = (EditText) findViewById(R.id.editmyplace_desc_edit);
 
         if (!editMode) {
             finishedButton.setEnabled(true);
@@ -56,7 +57,6 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
             finishedButton.setText("Save");
             MyPlace place = MyPlacesData.getInstance().getPlace(position);
             nameEditText.setText(place.getName());
-            EditText descEditText = (EditText) findViewById(R.id.editmyplace_desc_edit);
             descEditText.setText(place.getDescription());
         }
 
@@ -81,7 +81,22 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
+        descEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                finishedButton.setEnabled(nameEditText.length() > 0);
+            }
+        });
     }
 
     @Override
