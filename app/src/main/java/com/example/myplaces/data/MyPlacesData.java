@@ -7,11 +7,11 @@ public class MyPlacesData {
 
     private MyPlacesData() {
         MyPlaces = new ArrayList<>();
-        MyPlaces.add(new MyPlace("Cair"));
-        MyPlaces.add(new MyPlace("Cerovo"));
-        MyPlaces.add(new MyPlace("Nis"));
-        MyPlaces.add(new MyPlace("Beograd"));
-        MyPlaces.add(new MyPlace("Aleksinac"));
+//        MyPlaces.add(new MyPlace("Cair"));
+//        MyPlaces.add(new MyPlace("Cerovo"));
+//        MyPlaces.add(new MyPlace("Nis"));
+//        MyPlaces.add(new MyPlace("Beograd"));
+//        MyPlaces.add(new MyPlace("Aleksinac"));
     }
 
     public void addNewPlace(MyPlace place) {

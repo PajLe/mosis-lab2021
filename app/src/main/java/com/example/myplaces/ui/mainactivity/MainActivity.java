@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         switch (id) {
             case R.id.show_map_item:
                 i = new Intent(this, GoogleMapsActivity.class);
+                i.putExtra("state", GoogleMapsActivity.SHOW_MAP);
                 startActivity(i);
                 break;
             case R.id.new_place_item:

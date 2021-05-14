@@ -20,6 +20,7 @@ import com.example.myplaces.MyPlacesList;
 import com.example.myplaces.R;
 import com.example.myplaces.data.MyPlace;
 import com.example.myplaces.data.MyPlacesData;
+import com.example.myplaces.ui.googlemapsactivity.GoogleMapsActivity;
 
 public class EditMyPlaceActivity extends AppCompatActivity implements View.OnClickListener {
     boolean editMode = true;
@@ -49,6 +50,8 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
         Button cancelButton = (Button) findViewById(R.id.editmyplace_cancel_button);
         EditText nameEditText = (EditText) findViewById(R.id.editmyplace_name_edit);
         EditText descEditText = (EditText) findViewById(R.id.editmyplace_desc_edit);
+        EditText longEditText = (EditText) findViewById(R.id.editmyplace_lon_edit);
+        EditText latEditText = (EditText) findViewById(R.id.editmyplace_lat_edit);
 
         if (!editMode) {
             finishedButton.setEnabled(true);
@@ -58,6 +61,8 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
             MyPlace place = MyPlacesData.getInstance().getPlace(position);
             nameEditText.setText(place.getName());
             descEditText.setText(place.getDescription());
+            longEditText.setText(place.getLongitude());
+            latEditText.setText(place.getLatitude());
         }
 
         finishedButton.setOnClickListener(this);
@@ -97,6 +102,8 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
                 finishedButton.setEnabled(nameEditText.length() > 0);
             }
         });
+        Button locationButton = (Button)findViewById(R.id.editmyplace_location_button);
+        locationButton.setOnClickListener(this);
     }
 
     @Override
@@ -109,12 +116,22 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
                 EditText etDesc = (EditText) findViewById(R.id.editmyplace_desc_edit);
                 String desc = etDesc.getText().toString();
 
+                EditText latEdit = (EditText) findViewById(R.id.editmyplace_lat_edit);
+                String lat = latEdit.getText().toString();
+
+                EditText lonEdit = (EditText) findViewById(R.id.editmyplace_lon_edit);
+                String lon = lonEdit.getText().toString();
+
                 if(!editMode) {
                     MyPlace place = new MyPlace(name, desc);
+                    place.setLatitude(lat);
+                    place.setLongitude(lon);
                     MyPlacesData.getInstance().addNewPlace(place);
                 } else {
                     MyPlace place = MyPlacesData.getInstance().getPlace(position);
                     place.setName(name);
+                    place.setLatitude(lat);
+                    place.setLongitude(lon);
                     place.setDescription(desc);
                 }
 
@@ -128,6 +145,34 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             }
+
+            case R.id.editmyplace_location_button:
+            {
+                Intent i = new Intent(this, GoogleMapsActivity.class);
+                i.putExtra("state", GoogleMapsActivity.SELECT_COORDINATES);
+                startActivityForResult(i, 1);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        try
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+                String lon = data.getExtras().getString("lon");
+                EditText lonText = (EditText)findViewById(R.id.editmyplace_lon_edit);
+                lonText.setText(lon);
+
+                String lat = data.getExtras().getString("lat");
+                EditText latText = (EditText)findViewById(R.id.editmyplace_lat_edit);
+                latText.setText(lat);
+            }
+        } catch(Exception exception) {
+
         }
     }
 
