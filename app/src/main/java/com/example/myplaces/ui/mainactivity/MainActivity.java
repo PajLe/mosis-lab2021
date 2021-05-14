@@ -3,23 +3,21 @@ package com.example.myplaces.ui.mainactivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.myplaces.AboutActivity;
-import com.example.myplaces.MyPlacesList;
-import com.example.myplaces.R;
-import com.example.myplaces.ui.editmyplaceactivity.EditMyPlaceActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+import com.example.myplaces.AboutActivity;
+import com.example.myplaces.MyPlacesList;
+import com.example.myplaces.R;
+import com.example.myplaces.ui.editmyplaceactivity.EditMyPlaceActivity;
+import com.example.myplaces.ui.googlemapsactivity.GoogleMapsActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, EditMyPlaceActivity.class);
+                startActivityForResult(i, NEW_PLACE_REQUEST);
             }
         });
     }
@@ -59,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
         Intent i;
         switch (id) {
             case R.id.show_map_item:
-                Toast.makeText(this, "Show Map!", Toast.LENGTH_SHORT).show();
+                i = new Intent(this, GoogleMapsActivity.class);
+                startActivity(i);
                 break;
             case R.id.new_place_item:
                 i = new Intent(this, EditMyPlaceActivity.class);

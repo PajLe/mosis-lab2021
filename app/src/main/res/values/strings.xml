@@ -27,5 +27,6 @@
     <string name="editmyplace_finished_label">Finish</string>
 
     <string name="viewmyplace_finished_button">OK</string>
+    <string name="title_activity_google_maps">Map</string>
 
 </resources>
