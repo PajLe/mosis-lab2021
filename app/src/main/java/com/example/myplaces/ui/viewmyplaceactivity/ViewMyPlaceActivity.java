@@ -1,9 +1,5 @@
 package com.example.myplaces.ui.viewmyplaceactivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,11 +9,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myplaces.AboutActivity;
 import com.example.myplaces.MyPlacesList;
 import com.example.myplaces.R;
 import com.example.myplaces.data.MyPlace;
 import com.example.myplaces.data.MyPlacesData;
+import com.example.myplaces.ui.googlemapsactivity.GoogleMapsActivity;
 
 public class ViewMyPlaceActivity extends AppCompatActivity {
 
@@ -77,7 +77,9 @@ public class ViewMyPlaceActivity extends AppCompatActivity {
         Intent i;
         switch (id) {
             case R.id.show_map_item:
-                Toast.makeText(this, "Show Map!", Toast.LENGTH_SHORT).show();
+                i = new Intent(this, GoogleMapsActivity.class);
+                i.putExtra("state", GoogleMapsActivity.SHOW_MAP);
+                startActivity(i);
                 break;
             case R.id.my_places_list_item:
                 i = new Intent(this, MyPlacesList.class);

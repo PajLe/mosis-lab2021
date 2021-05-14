@@ -3,20 +3,6 @@ package com.example.myplaces;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.myplaces.data.MyPlace;
-import com.example.myplaces.data.MyPlacesData;
-import com.example.myplaces.ui.editmyplaceactivity.EditMyPlaceActivity;
-import com.example.myplaces.ui.googlemapsactivity.GoogleMapsActivity;
-import com.example.myplaces.ui.viewmyplaceactivity.ViewMyPlaceActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +10,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.myplaces.data.MyPlace;
+import com.example.myplaces.data.MyPlacesData;
+import com.example.myplaces.ui.editmyplaceactivity.EditMyPlaceActivity;
+import com.example.myplaces.ui.googlemapsactivity.GoogleMapsActivity;
+import com.example.myplaces.ui.viewmyplaceactivity.ViewMyPlaceActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -91,7 +88,9 @@ public class MyPlacesList extends AppCompatActivity {
         Intent i;
         switch (id) {
             case R.id.show_map_item:
-                Toast.makeText(this, "Show Map!", Toast.LENGTH_SHORT).show();
+                i = new Intent(this, GoogleMapsActivity.class);
+                i.putExtra("state", GoogleMapsActivity.SHOW_MAP);
+                startActivity(i);
                 break;
             case R.id.new_place_item:
                 //
