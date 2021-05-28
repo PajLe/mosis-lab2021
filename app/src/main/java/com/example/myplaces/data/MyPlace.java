@@ -1,60 +1,28 @@
 package com.example.myplaces.data;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class MyPlace {
-    private String Name;
-    private String Description;
-    private String latitude;
-    private String longitude;
+    public String Name;
+    public String Description;
+    public String latitude;
+    public String longitude;
 
-    private int ID;
+    @Exclude
+    public String key;
 
-    public int getId() {
-        return ID;
+    public MyPlace() {
     }
 
-    public void setId(int ID) {
-        this.ID = ID;
-    }
-
-    public MyPlace(String name, String description) {
-        Name = name;
-        Description = description;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
+    public MyPlace(String name, String desc) {
+        this.Name = name;
+        this.Description = desc;
     }
 
     public MyPlace(String name) {
         this(name, "");
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
-    }
-
-    public void setName(String name) {
-        Name = name;
     }
 
     @Override

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989557092194",
+    "project_id": "valiant-carrier-313719",
+    "storage_bucket": "valiant-carrier-313719.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989557092194:android:fa2260bf40f2b20363863b",
+        "android_client_info": {
+          "package_name": "com.example.myplaces"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989557092194-gaq4qoekc9bdhabbqdtf9sc4sjev4go5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ-2dxLe-6QUYjPbNLcjsvp7oVcJ0eDp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989557092194-gaq4qoekc9bdhabbqdtf9sc4sjev4go5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

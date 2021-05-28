@@ -179,13 +179,13 @@ public class GoogleMapsActivity extends AppCompatActivity implements OnMapReadyC
         markerPlaceIdMap = new HashMap<>();
         for(int i=0; i<places.size(); i++) {
             MyPlace place = places.get(i);
-            String lat = place.getLatitude();
-            String lon = place.getLongitude();
+            String lat = place.latitude;
+            String lon = place.longitude;
             LatLng loc = new LatLng(Double.parseDouble(lat), Double.parseDouble(lon));
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(loc);
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin));
-            markerOptions.title(place.getName());
+            markerOptions.title(place.Name);
             Marker m = mMap.addMarker(markerOptions);
             markerPlaceIdMap.put(m, i);
         }

@@ -1,8 +1,5 @@
 package com.example.myplaces.ui.editmyplaceactivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myplaces.AboutActivity;
 import com.example.myplaces.MyPlacesList;
@@ -59,10 +59,10 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
         } else if (position >= 0) {
             finishedButton.setText("Save");
             MyPlace place = MyPlacesData.getInstance().getPlace(position);
-            nameEditText.setText(place.getName());
-            descEditText.setText(place.getDescription());
-            longEditText.setText(place.getLongitude());
-            latEditText.setText(place.getLatitude());
+            nameEditText.setText(place.Name);
+            descEditText.setText(place.Description);
+            longEditText.setText(place.longitude);
+            latEditText.setText(place.latitude);
         }
 
         finishedButton.setOnClickListener(this);
@@ -124,15 +124,11 @@ public class EditMyPlaceActivity extends AppCompatActivity implements View.OnCli
 
                 if(!editMode) {
                     MyPlace place = new MyPlace(name, desc);
-                    place.setLatitude(lat);
-                    place.setLongitude(lon);
+                    place.latitude = lat;
+                    place.longitude = lon;
                     MyPlacesData.getInstance().addNewPlace(place);
                 } else {
-                    MyPlace place = MyPlacesData.getInstance().getPlace(position);
-                    place.setName(name);
-                    place.setLatitude(lat);
-                    place.setLongitude(lon);
-                    place.setDescription(desc);
+                    MyPlacesData.getInstance().updatePlace(position, name, desc, lon, lat);
                 }
 
                 setResult(Activity.RESULT_OK);
